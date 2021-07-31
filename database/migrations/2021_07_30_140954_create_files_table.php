@@ -18,6 +18,7 @@ class CreateFilesTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('folder_id');
             $table->string('name');
+            $table->string('size');
             $table->string('path');
             $table->timestamps();
         });

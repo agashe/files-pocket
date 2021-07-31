@@ -10,7 +10,7 @@ Auth::routes();
 
 Route::middleware('auth')->group(function () {
     /** Home Routes **/
-    Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('/{id?}', [HomeController::class, 'index'])->name('home');
 
     /** Folders Routes **/
     Route::resource('folders', FolderController::class)->except(['create', 'edit', 'update']);

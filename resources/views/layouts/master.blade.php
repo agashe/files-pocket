@@ -15,6 +15,7 @@
     <!-- [CSS] -->
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/fontawesome/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/toastr.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <!-- [CSS] -->
 </head>
@@ -101,13 +102,15 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="">
-                        <input type="file" name="file" class="form-control">
+                    <form action="{{ route('files.store') }}" method="POST" id="upload" enctype="multipart/form-data">
+                        @csrf
+                        <input type="hidden" name="folder_id" value="{{ $id }}">
+                        <input type="file" name="file" class="form-control" required>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Upload</button>
+                    <button type="submit" class="btn btn-primary" onclick="$('#upload').submit();">Upload</button>
                 </div>
             </div>
         </div>
@@ -123,13 +126,15 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="">
-                        <input type="text" name="file-name" class="form-control" placeholder="Enter folder name">
+                    <form action="{{ route('folders.store') }}" method="POST" id="create">
+                        @csrf
+                        <input type="hidden" name="parent_id" value="{{ $id }}">
+                        <input type="text" name="file-name" class="form-control" placeholder="Enter folder name" required>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Create</button>
+                    <button type="submit" class="btn btn-primary" onclick="$('#create').submit();">Create</button>
                 </div>
             </div>
         </div>
@@ -140,7 +145,14 @@
     <script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ asset('assets/js/popper.min.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/js/toastr.min.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
+
+    @if(session()->has('success'))
+        <script>
+            toastr.success('{{ session("success") }}');
+        </script>
+    @endif
     <!-- [JS] -->
 </body>
 </html>
