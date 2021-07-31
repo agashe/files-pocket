@@ -19,22 +19,127 @@
     <!-- [CSS] -->
 </head>
 <body>
-    <header>
-        <h1><span>File</span>Pocket</h1>
+    <header class="mb-3 p-3 pb-5 border-bottom">
+        <div class="row">
+            <div class="col-md-2">
+                <h4 class="logo logo-small"><span>Files</span>Pocket</h4>
+            </div>
+            <div class="col-md-7">
+                <input type="text" name="keyword" class="form-control" placeholder="Type something for search ...">
+            </div>
+            <div class="col-md-1">
+                <button class="btn btn-info text-light w-100" title="Search">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+            <div class="col-md-2">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle w-100" title="User"
+                    type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa fa-user"></i>
+                        {{ auth()->user()->name }}
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                        <li>
+                            <a class="dropdown-item" role="button">
+                                <i class="fa fa-book"></i> My Profile
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" role="button">
+                                <i class="fa fa-cog"></i> Settings
+                            </a>
+                        </li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <form action="{{ route('logout') }}" method="POST" class="d-none logout">@csrf</form>
+                            <a class="dropdown-item" role="button" onclick="$('.logout').submit();">
+                                <i class="fa fa-sign-out-alt"></i> Logout
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-1">
+                <button class="btn btn-danger text-light w-100" id="back" title="Back">
+                    <i class="fa fa-arrow-left"></i>
+                </button>
+            </div>
+            <div class="col-md-7">
+                <input type="text" name="current_path" class="form-control" value="/" title="Current Path" readonly>
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-primary text-light w-100" title="Create Folder"
+                data-bs-toggle="modal" data-bs-target="#create-folder">
+                    <i class="fa fa-folder-plus"></i> Create Folder
+                </button>
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-primary text-light w-100" title="Upload File"
+                data-bs-toggle="modal" data-bs-target="#upload-file">
+                    <i class="fa fa-file-upload"></i> Upload File
+                </button>
+            </div>
+        </div>
     </header>
 
     <main>
         @yield('content')
     </main>
+    
 
-    <footer>
-        <p>FilesPocket &copy; {{ date('Y') }}</p>
-    </footer>
+    <!-- [Modals] -->
+    <div class="modal fade" id="upload-file" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fa fa-file-upload"></i> Upload File
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="">
+                        <input type="file" name="file" class="form-control">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Upload</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <div class="modal fade" id="create-folder" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fa fa-folder-plus"></i> Create New Folder
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="">
+                        <input type="text" name="file-name" class="form-control" placeholder="Enter folder name">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Create</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- [Modals] -->
+    
     <!-- [JS] -->
-    <script src="{{ asset('assets/js/bootstrap/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('assets/js/popper.min.js') }}"></script>
     <script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}"></script>
+    <script src="{{ asset('assets/js/popper.min.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
     <!-- [JS] -->
 </body>

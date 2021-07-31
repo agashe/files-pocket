@@ -26,22 +26,34 @@
 .logo span {
     color: var(--brand);
 }
+.logo-small {
+    font-size: 2em;
+}
+
+.brand-color {
+    color: var(--brand);
+}
 /* ************ [Global] ************ */ 
 
 /* ************ [Header] ************ */ 
-
+header {
+    height: 125px;
+}
 /* ************ [Header] ************ */ 
 
 /* ************ [Main] ************ */ 
 main {
-    min-height: 550px;
-    height: 550px;
+    min-height: 450px;
+    height: 450px;
+}
+
+.card {
+    cursor: pointer;
+}
+.card:hover {
+    background-color: #e9ecef;
 }
 /* ************ [Main] ************ */ 
-
-/* ************ [Footer] ************ */ 
-
-/* ************ [Footer] ************ */ 
 
 /* ************ [Responsive] ************ */ 
 @media only screen and (max-width: 600px) {
