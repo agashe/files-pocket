@@ -17,6 +17,15 @@
     --brand: #d0881b;
 }
 
+.logo {
+    font-size: 3em;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    font-style: italic;
+}
+.logo span {
+    color: var(--brand);
+}
 /* ************ [Global] ************ */ 
 
 /* ************ [Header] ************ */ 
@@ -25,8 +34,8 @@
 
 /* ************ [Main] ************ */ 
 main {
-    min-height: 600px;
-    height: 600px;
+    min-height: 550px;
+    height: 550px;
 }
 /* ************ [Main] ************ */ 
 

@@ -23,6 +23,10 @@
         @yield('content')
     </main>
 
+    <footer class="text-center">
+        FilesPocket &copy; {{ date('Y') }}
+    </footer>
+
     <!-- [JS] -->
     <script src="{{ asset('assets/js/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/js/popper.min.js') }}"></script>
