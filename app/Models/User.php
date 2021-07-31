@@ -40,4 +40,24 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Get all user's folders.
+     * 
+     * @return \HasMany
+     */
+    public function folders()
+    {
+        return $this->hasMany(Folder::class);
+    }
+    
+    /**
+     * Get all user's files.
+     * 
+     * @return \HasMany
+     */
+    public function files()
+    {
+        return $this->hasMany(File::class);
+    }
 }
