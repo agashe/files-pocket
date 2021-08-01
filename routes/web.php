@@ -11,6 +11,7 @@ Auth::routes();
 Route::middleware('auth')->group(function () {
     /** Home Routes **/
     Route::get('/{id?}', [HomeController::class, 'index'])->name('home');
+    Route::get('items/search', [HomeController::class, 'search'])->name('search');
 
     /** Folders Routes **/
     Route::resource('folders', FolderController::class)->only(['store', 'destroy']);

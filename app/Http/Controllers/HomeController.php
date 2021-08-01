@@ -33,4 +33,30 @@ class HomeController extends Controller
 
         return view('home', compact('folders', 'files', 'id'));
     }
+    
+    /**
+     * Search files and folders.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request)
+    {
+        $request->validate([
+            'keyword' => 'required'
+        ]);
+
+        $keyword = $request->keyword;
+
+        // no current folder
+        $id = 0;
+
+        $folders = Folder::where('user_id', auth()->user()->id)
+            ->where('name', 'like', '%'.$keyword.'%')->get();
+
+        $files = File::where('user_id', auth()->user()->id)
+            ->where('name', 'like', '%'.$keyword.'%')->get();
+
+        return view('home', compact('folders', 'files', 'id', 'keyword'));
+    }
 }

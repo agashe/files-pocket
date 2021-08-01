@@ -33,7 +33,7 @@ class Folder extends Model
      */
     public function children()
     {
-        return $this->hasMany(Folder::class);
+        return $this->hasMany(Folder::class, 'parent_id', 'id');
     }
     
     /**
@@ -44,5 +44,15 @@ class Folder extends Model
     public function files()
     {
         return $this->hasMany(File::class);
+    }
+
+    /**
+     * Get total count of sub folders and files.
+     * 
+     * @return int 
+     */
+    public function getItemsCountAttribute()
+    {
+        return ($this->children()->count() + $this->files()->count());
     }
 }

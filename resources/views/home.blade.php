@@ -10,15 +10,21 @@
                         <p class="h1 brand-color fa fa-folder"></p>
 
                         <p>
-                            Folder name
-                            <small class="d-block">1KB</small>
+                            {{ $folder->name }}
+                            <small class="d-block">{{ $folder->items_count . ' items' }}</small>
                         </p>
 
                         <div class="row">
                             <div class="col-md-12">
-                                <a href="" class="btn btn-danger w-100" title="Delete">
+                                <form action="{{ route('folders.destroy', $folder->id) }}" method="POST" class="d-none">
+                                    @csrf
+                                    @method('DELETE')
+                                </form>
+                                <button class="btn btn-danger w-100" title="Delete" onclick="
+                                    return confirm('Are you sure?') ? $(this).closest('div').find('form').submit() : false;
+                                ">
                                     <i class="fa fa-trash"></i>
-                                </a>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -49,7 +55,7 @@
                                     @method('DELETE')
                                 </form>
                                 <button class="btn btn-danger w-100" title="Delete" onclick="
-                                return confirm('Are you sure?') ? $(this).closest('div').find('form').submit() : false;
+                                    return confirm('Are you sure?') ? $(this).closest('div').find('form').submit() : false;
                                 ">
                                     <i class="fa fa-trash"></i>
                                 </button>
@@ -61,7 +67,7 @@
         @endforeach
     @else
         <p class="text-center text-info">
-            Sorry no files yet!
+            Sorry no files!
         </p>
     @endif
 </div>

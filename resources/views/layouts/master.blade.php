@@ -26,10 +26,13 @@
                 <h4 class="logo logo-small"><span>Files</span>Pocket</h4>
             </div>
             <div class="col-md-7">
-                <input type="text" name="keyword" class="form-control" placeholder="Type something for search ...">
+                <form action="{{ route('search') }}" method="GET" id="search-form">
+                    <input type="text" name="keyword" id="keyword" class="form-control" placeholder="Type something for search ..." value="{{ isset($keyword)? $keyword : '' }}">
+                </form>
             </div>
             <div class="col-md-1">
-                <button class="btn btn-info text-light w-100" title="Search">
+                <button class="btn btn-info text-light w-100" title="Search"
+                onclick="if ($('#keyword').val() != '') $('#search-form').submit();">
                     <i class="fa fa-search"></i>
                 </button>
             </div>
@@ -68,7 +71,12 @@
                     <i class="fa fa-arrow-left"></i>
                 </button>
             </div>
-            <div class="col-md-7">
+            <div class="col-md-1">
+                <a href="{{ route('home') }}" class="btn btn-primary text-light w-100" title="Home">
+                    <i class="fa fa-home"></i>
+                </a>
+            </div>
+            <div class="col-md-6">
                 <input type="text" name="current_path" class="form-control" value="/" title="Current Path" readonly>
             </div>
             <div class="col-md-2">
@@ -129,7 +137,7 @@
                     <form action="{{ route('folders.store') }}" method="POST" id="create">
                         @csrf
                         <input type="hidden" name="parent_id" value="{{ $id }}">
-                        <input type="text" name="file-name" class="form-control" placeholder="Enter folder name" required>
+                        <input type="text" name="name" class="form-control" placeholder="Enter folder name" required>
                     </form>
                 </div>
                 <div class="modal-footer">

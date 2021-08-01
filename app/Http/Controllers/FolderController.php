@@ -16,7 +16,7 @@ class FolderController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'file' => 'file|required',
+            'name' => 'required',
         ]);
 
         Folder::create([
