@@ -67,9 +67,10 @@
         </div>
         <div class="row mt-2">
             <div class="col-md-1">
-                <button class="btn btn-danger text-light w-100" id="back" title="Back">
+                <a href="{{ route('home', optional(optional($currentFolder)->parent)->id) }}" 
+                    class="btn btn-danger text-light w-100" id="back" title="Back">
                     <i class="fa fa-arrow-left"></i>
-                </button>
+                </a>
             </div>
             <div class="col-md-1">
                 <a href="{{ route('home') }}" class="btn btn-primary text-light w-100" title="Home">
@@ -77,7 +78,7 @@
                 </a>
             </div>
             <div class="col-md-6">
-                <input type="text" name="current_path" class="form-control" value="/" title="Current Path" readonly>
+                <input type="text" name="current_path" class="form-control" value="{{ $path }}" title="Current Path" readonly>
             </div>
             <div class="col-md-2">
                 <button class="btn btn-primary text-light w-100" title="Create Folder"

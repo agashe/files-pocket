@@ -4,9 +4,10 @@
 <div class="row mx-0">
     @if (count($folders) || count($files))
         @foreach ($folders as $folder)
-            <div class="col-md-2">
+            <div class="col-md-2 mt-2">
                 <div class="card w-100 folder-card">
-                    <div class="card-body text-center">
+                    <div class="card-body text-center" onclick="$(this).find('#link')[0].click();">
+                        <a href="{{ route('home', ['id' => $folder->id]) }}" class="d-none" id="link"></a>
                         <p class="h1 brand-color fa fa-folder"></p>
 
                         <p>
@@ -33,7 +34,7 @@
         @endforeach
 
         @foreach ($files as $file)
-            <div class="col-md-2">
+            <div class="col-md-2 mt-2">
                 <div class="card w-100 file-card">
                     <div class="card-body text-center">
                         <p class="h1 brand-color fa fa-file"></p>
