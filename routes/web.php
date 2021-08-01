@@ -13,7 +13,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/{id?}', [HomeController::class, 'index'])->name('home');
 
     /** Folders Routes **/
-    Route::resource('folders', FolderController::class)->except(['create', 'edit', 'update']);
+    Route::resource('folders', FolderController::class)->only(['store', 'destroy']);
 
     /** Files Routes **/
     Route::resource('files', FileController::class)->only(['store', 'destroy']);

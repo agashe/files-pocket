@@ -22,7 +22,7 @@ class FileController extends Controller
         $fileName = $request->file('file')->getClientOriginalName();
         $folderName = '/storage/folder' . auth()->user()->id;
         $filePath = $request->file('file')->storeAs($folderName , $fileName, 'public');
-        $fileSize = $request->file('file')->getSize();
+        $fileSize = file_size($request->file('file')->getSize());
 
         File::create([
             'name' => $fileName,
